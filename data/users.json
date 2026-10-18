@@ -1,0 +1,38 @@
+[
+  {
+    "id": "usr-admin-01",
+    "name": "Administrador",
+    "email": "admin@comparapc.co",
+    "password": "password",
+    "role": "admin",
+    "favorites": [],
+    "saved_builds": []
+  },
+  {
+    "id": "usr-client-01",
+    "name": "Cliente Demo",
+    "email": "cliente@comparapc.co",
+    "password": "cliente123",
+    "role": "cliente",
+    "favorites": [],
+    "saved_builds": []
+  },
+  {
+    "id": "usr-admin-02",
+    "name": "Administrador General",
+    "email": "admin@hardwareprice.com",
+    "password": "admin",
+    "role": "admin",
+    "favorites": [],
+    "saved_builds": []
+  },
+  {
+    "id": "usr-client-02",
+    "name": "Cliente Hardware",
+    "email": "cliente@hardwareprice.com",
+    "password": "123",
+    "role": "cliente",
+    "favorites": [],
+    "saved_builds": []
+  }
+]

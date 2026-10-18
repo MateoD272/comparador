@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>compara·pc — Comparador de componentes de PC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #15171C;
+    --panel: #1D2027;
+    --panel-2: #23262F;
+    --line: #33363F;
+    --text: #E9E7E1;
+    --muted: #8D9099;
+    --copper: #D98E3F;
+    --cyan: #59B7C4;
+    --danger: #C4645B;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; border-bottom:1px solid var(--line);
+    flex-wrap:wrap; gap:12px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; cursor:pointer; }
+  .brand svg{ display:block; }
+  .brand span{ font-size:19px; font-weight:600; letter-spacing:0.2px; }
+  .brand span b{ color:var(--copper); font-weight:600; }
+
+  nav{ display:flex; gap:4px; }
+  nav button{
+    background:none; border:none; color:var(--muted);
+    font-family:'Space Grotesk', sans-serif; font-size:14.5px;
+    padding:8px 14px; cursor:pointer; border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  nav button.active{ color:var(--text); border-bottom:2px solid var(--copper); }
+  nav button:hover{ color:var(--text); }
+
+  main{ padding:28px 32px 60px; max-width:1180px; margin:0 auto; }
+  .screen{ display:none; }
+  .screen.active{ display:block; }
+
+  h1{ font-size:22px; font-weight:600; margin:0 0 4px; }
+  .subtitle{ color:var(--muted); font-size:14px; margin:0 0 24px; }
+
+  /* ---- Buscar ---- */
+  .search-layout{ display:grid; grid-template-columns:240px 1fr; gap:28px; }
+  .filters{ border-right:1px solid var(--line); padding-right:24px; }
+  .filters h3{ font-size:12.5px; color:var(--muted); font-weight:600; margin:20px 0 10px; }
+  .filters h3:first-child{ margin-top:0; }
+  .filter-row{ display:flex; align-items:center; gap:8px; font-size:14px; margin:7px 0; color:var(--text); cursor:pointer; }
+  .filter-row input[type=checkbox]{ accent-color: var(--copper); cursor:pointer; }
+  .price-range{ display:flex; gap:8px; margin-top:6px; }
+  .price-range input{
+    width:100%; background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    border-radius:4px; padding:6px 8px; font-family:'IBM Plex Mono'; font-size:13px;
+  }
+  .btn-apply{
+    margin-top:18px; width:100%; background:none; border:1px solid var(--copper);
+    color:var(--copper); padding:9px; border-radius:4px; font-size:13.5px; cursor:pointer;
+    font-family:'Space Grotesk'; transition:.15s ease;
+  }
+  .btn-apply:hover{ background:rgba(217,142,63,.12); }
+
+  .results-bar{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; }
+  .results-bar span{ color:var(--muted); font-size:13px; }
+
+  .cards{ display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:16px 18px;
+    display:flex; flex-direction:column; gap:8px; transition:border-color .2s ease;
+  }
+  .card:hover{ border-color:rgba(217,142,63,.5); }
+  .card .name{ font-size:15.5px; font-weight:500; }
+  .card .specs{ color:var(--muted); font-size:12.5px; line-height:1.5; }
+  .card .price-row{ display:flex; align-items:baseline; justify-content:space-between; margin-top:6px; }
+  .price-tag{ font-size:11px; color:var(--muted); text-transform:none; }
+  .price-value{ font-family:'IBM Plex Mono'; font-size:20px; color:var(--copper); font-weight:600; }
+  .store-count{ font-size:12px; color:var(--cyan); }
+  .card-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:4px; }
+  .btn-compare{
+    background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    padding:7px 14px; border-radius:4px; font-size:13px; cursor:pointer; font-family:'Space Grotesk';
+    transition:.15s ease;
+  }
+  .btn-compare:hover{ border-color:var(--cyan); color:var(--cyan); }
+
+  /* ---- Comparar ---- */
+  .compare-head{
+    background:var(--panel); border:1px solid var(--line); border-radius:6px;
+    padding:18px 20px; margin-bottom:20px;
+  }
+  .compare-head .name{ font-size:17px; font-weight:600; }
+  .compare-head .specs{ color:var(--muted); font-size:13px; margin-top:4px; }
+
+  table{ width:100%; border-collapse:collapse; }
+  th{
+    text-align:left; font-size:12px; color:var(--muted); font-weight:600;
+    padding:10px 14px; border-bottom:1px solid var(--line);
+  }
+  td{ padding:13px 14px; font-size:14px; border-bottom:1px solid var(--line); }
+  tr.best td{ background:rgba(217,142,63,.07); }
+  tr.best td:first-child{ border-left:2px solid var(--copper); padding-left:12px; }
+  .store-name{ font-weight:500; }
+  .price-cell{ font-family:'IBM Plex Mono'; font-size:15px; }
+  .badge{
+    font-size:11px; padding:3px 8px; border-radius:3px; font-family:'IBM Plex Mono';
+  }
+  .badge.ok{ color:var(--cyan); background:rgba(89,183,196,.12); }
+  .badge.no{ color:var(--danger); background:rgba(196,100,91,.12); }
+  .best-tag{
+    font-size:10.5px; color:var(--copper); font-family:'IBM Plex Mono'; letter-spacing:.3px; font-weight:600;
+  }
+
+  /* ---- Admin & Auth ---- */
+  .login-box{
+    max-width:340px; margin:40px auto; background:var(--panel); border:1px solid var(--line);
+    border-radius:6px; padding:28px;
+  }
+  .login-box h2{ font-size:16px; margin:0 0 18px; text-align:center; font-weight:600; }
+  .field{ margin-bottom:14px; }
+  .field label{ display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px; }
+  .field input{
+    width:100%; background:var(--panel-2); border:1px solid var(--line); color:var(--text);
+    border-radius:4px; padding:9px 10px; font-family:'IBM Plex Mono'; font-size:13.5px;
+  }
+  .btn-login{
+    width:100%; background:var(--copper); border:none; color:#15171C; font-weight:600;
+    padding:10px; border-radius:4px; font-size:14px; cursor:pointer; margin-top:6px;
+    font-family:'Space Grotesk'; transition:.15s ease;
+  }
+  .btn-login:hover{ opacity:.9; }
+
+  .admin-panel{ display:none; }
+  .admin-panel.active{ display:block; }
+  .admin-toolbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .btn-new{
+    background:none; border:1px solid var(--copper); color:var(--copper);
+    padding:8px 14px; border-radius:4px; font-size:13px; cursor:pointer; font-family:'Space Grotesk';
+  }
+  .row-actions a{ color:var(--cyan); font-size:12.5px; text-decoration:none; margin-right:12px; font-family:'IBM Plex Mono'; cursor:pointer; }
+  .row-actions a.del{ color:var(--danger); }
+
+  /* ---- Header Auth ---- */
+  .auth{ display:flex; align-items:center; gap:10px; }
+  .btn-ghost{ background:none; border:1px solid var(--line); color:var(--text); padding:7px 14px; border-radius:4px; font-size:13px; cursor:pointer; font-family:'Space Grotesk'; transition:.15s ease; }
+  .btn-ghost:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .btn-solid{ background:var(--copper); border:1px solid var(--copper); color:#15171C; font-weight:600; padding:7px 14px; border-radius:4px; font-size:13px; cursor:pointer; font-family:'Space Grotesk'; }
+  .user{ display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--muted); }
+  .avatar{ width:28px; height:28px; border-radius:50%; background:rgba(217,142,63,.15); border:1px solid var(--copper); color:var(--copper); display:grid; place-items:center; font-size:11px; font-weight:600; }
+  .auth-wrap{ max-width:400px; margin:24px auto; }
+  .auth-wrap .login-box{ max-width:none; margin:0; }
+  .auth-wrap .sub{ text-align:center; color:var(--muted); font-size:13px; margin:-8px 0 20px; }
+  .auth-link{ text-align:center; font-size:13px; color:var(--muted); margin-top:16px; }
+  .auth-link a{ color:var(--cyan); cursor:pointer; text-decoration:none; }
+  .check{ display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:var(--muted); margin:4px 0 6px; }
+  .check input{ accent-color:var(--copper); margin-top:2px; }
+  .hint{ font-size:11.5px; color:var(--muted); margin-top:5px; line-height:1.4; }
+
+  /* ---- CRUD Tools & Form ---- */
+  .tools{ display:flex; gap:10px; align-items:center; margin-bottom:14px; }
+  .tools .search{ flex:1; background:var(--panel-2); border:1px solid var(--line); color:var(--text); border-radius:4px; padding:8px 10px; font-family:'Space Grotesk'; font-size:13.5px; }
+  .tools select, .field select, .field textarea{ background:var(--panel-2); border:1px solid var(--line); color:var(--text); border-radius:4px; padding:8px 10px; font-family:'Space Grotesk'; font-size:13.5px; }
+  .field select, .field textarea{ width:100%; } .field textarea{ min-height:70px; resize:vertical; }
+  .form-card{ max-width:560px; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:24px; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .form-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:10px; }
+  .back{ color:var(--muted); font-size:13px; cursor:pointer; margin-bottom:14px; display:inline-block; }
+  .back:hover{ color:var(--cyan); }
+  .detail{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0; }
+  .detail div small{ display:block; color:var(--muted); font-size:11.5px; margin-bottom:3px; }
+  .empty{ text-align:center; color:var(--muted); padding:30px; font-size:14px; }
+
+  /* ---- Modal & Toast ---- */
+  .modal{ position:fixed; inset:0; background:rgba(10,11,14,.75); display:none; place-items:center; z-index:20; backdrop-filter:blur(4px); }
+  .modal.open{ display:grid; }
+  .modal-box{ background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:24px; max-width:380px; }
+  .modal-box h2{ font-size:16px; margin:0 0 8px; } .modal-box p{ color:var(--muted); font-size:13.5px; margin:0 0 18px; line-height:1.5; }
+  .btn-danger{ background:var(--danger); border:none; color:#fff; font-weight:600; padding:8px 14px; border-radius:4px; font-size:13px; cursor:pointer; font-family:'Space Grotesk'; }
+  .toast{ position:fixed; bottom:24px; right:24px; background:var(--panel-2); border:1px solid var(--cyan); color:var(--text); padding:11px 16px; border-radius:4px; font-size:13.5px; opacity:0; transform:translateY(8px); transition:.2s; pointer-events:none; z-index:30; }
+  .toast.show{ opacity:1; transform:none; }
+
+  /* ---- Roles y Botones ---- */
+  .role-badge{font-size:10.5px;padding:3px 7px;border-radius:3px;font-family:'IBM Plex Mono';background:rgba(89,183,196,.12);color:var(--cyan);}
+  .role-badge.admin{background:rgba(217,142,63,.12);color:var(--copper);}
+  .buy-btn{background:none;border:1px solid var(--cyan);color:var(--cyan);padding:7px 12px;border-radius:4px;font-size:12.5px;cursor:pointer;font-family:'Space Grotesk';text-decoration:none;display:inline-block;}
+  .buy-btn:hover{background:rgba(89,183,196,.1);}
+
+  @media(max-width:760px){
+    .search-layout{grid-template-columns:1fr;}
+    .filters{border-right:0;border-bottom:1px solid var(--line);padding-right:0;padding-bottom:18px;}
+    .cards{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" onclick="showScreen('buscar')">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="2" stroke="#D98E3F" stroke-width="1.6"/>
+      <path d="M8 8h8M8 12h8M8 16h4" stroke="#D98E3F" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <span>compara<b>·</b>pc</span>
+  </div>
+  <nav>
+    <button class="active" data-screen="buscar">Buscar</button>
+    <button data-screen="comparar">Comparar</button>
+    <button id="adminNav" data-screen="admin" style="display:none">Panel admin</button>
+  </nav>
+  <div class="auth" id="auth"></div>
+</header>
+
+<main>
+
+  <!-- PANTALLA: BUSCAR -->
+  <section class="screen active" id="buscar">
+    <h1>Componentes de computador</h1>
+    <p class="subtitle">Encuentra el mejor precio entre los establecimientos registrados.</p>
+
+    <div class="search-layout">
+      <aside class="filters">
+        <h3>Categoría</h3>
+        <label class="filter-row"><input type="checkbox" value="Memoria RAM" checked onchange="applyFilters()"> Memoria RAM</label>
+        <label class="filter-row"><input type="checkbox" value="Tarjeta gráfica" checked onchange="applyFilters()"> Tarjeta gráfica</label>
+        <label class="filter-row"><input type="checkbox" value="Procesador" checked onchange="applyFilters()"> Procesador</label>
+        <label class="filter-row"><input type="checkbox" value="Almacenamiento" checked onchange="applyFilters()"> Almacenamiento</label>
+
+        <h3>Marca</h3>
+        <div id="brandFilters">
+          <label class="filter-row"><input type="checkbox" value="Kingston" checked onchange="applyFilters()"> Kingston</label>
+          <label class="filter-row"><input type="checkbox" value="Corsair" checked onchange="applyFilters()"> Corsair</label>
+          <label class="filter-row"><input type="checkbox" value="ADATA" checked onchange="applyFilters()"> ADATA</label>
+          <label class="filter-row"><input type="checkbox" value="AMD" checked onchange="applyFilters()"> AMD</label>
+          <label class="filter-row"><input type="checkbox" value="NVIDIA" checked onchange="applyFilters()"> NVIDIA</label>
+          <label class="filter-row"><input type="checkbox" value="Intel" checked onchange="applyFilters()"> Intel</label>
+        </div>
+
+        <h3>Rango de precio (COP)</h3>
+        <div class="price-range">
+          <input type="text" id="minPrice" placeholder="Mín." value="100.000">
+          <input type="text" id="maxPrice" placeholder="Máx." value="3.000.000">
+        </div>
+        <button class="btn-apply" onclick="applyFilters()">Aplicar filtros</button>
+      </aside>
+
+      <div>
+        <div class="results-bar">
+          <span id="resultsCount">Cargando productos...</span>
+          <span>Ordenar: menor precio</span>
+        </div>
+        
+        <!-- Tarjetas dinámicas de productos -->
+        <div class="cards" id="cardsContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA: COMPARAR -->
+  <section class="screen" id="comparar">
+    <h1>Comparar precios</h1>
+    <p class="subtitle">Todas las ofertas disponibles para el producto seleccionado, ordenadas de menor a mayor precio.</p>
+
+    <div class="compare-head">
+      <div class="name" id="compareTitle">Selecciona un producto en Buscar</div>
+      <div class="specs" id="compareSpecs">Haz clic en «Comparar precios» en cualquier componente del catálogo.</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Establecimiento</th>
+          <th>Precio</th>
+          <th>Disponibilidad</th>
+          <th>Actualizado</th>
+          <th>Comprar</th>
+        </tr>
+      </thead>
+      <tbody id="compareRows">
+        <tr>
+          <td colspan="5" class="empty">Selecciona un componente en la pestaña Buscar para ver la comparativa.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PANTALLA: LOGIN -->
+  <section class="screen" id="login">
+    <div class="auth-wrap"><div class="login-box">
+      <h2>Iniciar sesión</h2>
+      <p class="sub">Accede como cliente o administrador según tu cuenta.</p>
+      
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input type="email" id="lEmail" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="lPass" placeholder="••••••••">
+      </div>
+      <label class="check"><input type="checkbox" checked> Mantener la sesión iniciada</label>
+      <button class="btn-login" onclick="login()">Iniciar sesión</button>
+      
+      <div class="auth-link">¿No tienes cuenta? <a onclick="showScreen('registro')">Regístrate como cliente</a></div>
+      
+      <div class="hint" style="margin-top:18px; padding-top:12px; border-top:1px solid var(--line);">
+        <strong>Cuentas de prueba:</strong><br>
+        • Admin: <span class="mono" style="color:var(--copper); cursor:pointer;" onclick="fillDemo('admin@comparapc.co','admin123')">admin@comparapc.co / admin123</span><br>
+        • Cliente: <span class="mono" style="color:var(--cyan); cursor:pointer;" onclick="fillDemo('cliente@comparapc.co','cliente123')">cliente@comparapc.co / cliente123</span>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- PANTALLA: REGISTRO -->
+  <section class="screen" id="registro">
+    <div class="auth-wrap"><div class="login-box">
+      <h2>Crear cuenta de cliente</h2>
+      <p class="sub">Las cuentas creadas desde aquí siempre tienen rol CLIENTE.</p>
+      <div class="field"><label>Nombre completo</label><input type="text" id="rName" placeholder="Nombre Apellido"></div>
+      <div class="field"><label>Correo electrónico</label><input type="email" id="rEmail" placeholder="correo@ejemplo.com"></div>
+      <div class="field"><label>Contraseña</label><input type="password" id="rPass" placeholder="Mínimo 8 caracteres"></div>
+      <div class="field"><label>Confirmar contraseña</label><input type="password" id="rPass2" placeholder="Repite la contraseña"></div>
+      <label class="check"><input type="checkbox" id="rTerms"> Acepto las políticas de privacidad y el tratamiento de mis datos</label>
+      <button class="btn-login" onclick="register()">Crear cuenta</button>
+      <div class="auth-link">¿Ya tienes cuenta? <a onclick="showScreen('login')">Inicia sesión</a></div>
+    </div></div>
+  </section>
+
+  <!-- PANTALLA: PANEL ADMINISTRATIVO (LISTADO CRUD) -->
+  <section class="screen" id="admin">
+    <h1>Panel administrativo</h1>
+    <p class="subtitle">Gestión exclusiva de productos, tiendas, precios y enlaces de compra.</p>
+    
+    <div class="tools">
+      <input class="search" id="q" placeholder="Buscar producto por nombre o marca…" oninput="renderRows()">
+      <select id="cat" onchange="renderRows()">
+        <option value="">Todas las categorías</option>
+        <option>Memoria RAM</option>
+        <option>Tarjeta gráfica</option>
+        <option>Procesador</option>
+        <option>Almacenamiento</option>
+      </select>
+      <button class="btn-new" onclick="openForm()">+ Nuevo producto</button>
+    </div>
+    
+    <div class="mono" id="count" style="color:var(--muted);font-size:13px;margin-bottom:8px;"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Marca</th>
+          <th>Categoría</th>
+          <th>Precio ref.</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+
+  <!-- PANTALLA: ADMIN FORMULARIO -->
+  <section class="screen" id="form">
+    <a class="back" onclick="showScreen('admin')">← Volver al listado</a>
+    <h1 id="formTitle">Nuevo producto</h1>
+    <p class="subtitle" id="formSub">Completa los datos para registrar el producto.</p>
+    
+    <div class="form-card">
+      <div class="field">
+        <label>Nombre del producto</label>
+        <input type="text" id="fN" placeholder="Ej. Kingston Fury Beast 16GB DDR4">
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label>Marca</label>
+          <input type="text" id="fM" placeholder="Kingston">
+        </div>
+        <div class="field">
+          <label>Categoría</label>
+          <select id="fC">
+            <option>Memoria RAM</option>
+            <option>Tarjeta gráfica</option>
+            <option>Procesador</option>
+            <option>Almacenamiento</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Especificaciones</label>
+        <textarea id="fS" placeholder="CL16 · 1.35V · Disipador negro"></textarea>
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label>Precio de referencia (COP)</label>
+          <input type="text" id="fP" placeholder="289.900">
+        </div>
+        <div class="field">
+          <label>Disponibilidad</label>
+          <select id="fAvail">
+            <option>Disponible</option>
+            <option>Agotado</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Establecimiento / tienda principal</label>
+        <input type="text" id="fStore" placeholder="Nombre de la tienda (ej. PC Componentes)">
+      </div>
+      <div class="field">
+        <label>URL de compra</label>
+        <input type="url" id="fUrl" placeholder="https://www.tienda.com/producto">
+        <div class="hint">El cliente podrá abrir este enlace para comprar directamente en el sitio oficial.</div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-ghost" onclick="showScreen('admin')">Cancelar</button>
+        <button class="btn-solid" onclick="saveForm()">Guardar producto</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA: ADMIN DETALLE -->
+  <section class="screen" id="detalle">
+    <a class="back" onclick="showScreen('admin')">← Volver al listado</a>
+    <div class="compare-head">
+      <div class="name" id="dN"></div>
+      <div class="specs" id="dS"></div>
+      <div class="detail">
+        <div><small>Marca</small><span id="dM"></span></div>
+        <div><small>Categoría</small><span id="dC"></span></div>
+        <div><small>Precio de referencia</small><span class="price-value mono" id="dP"></span></div>
+        <div><small>Tienda</small><span id="dStore"></span></div>
+        <div><small>Disponibilidad</small><span id="dAvail"></span></div>
+        <div><small>URL de compra</small><a class="buy-btn" id="dUrl" target="_blank" rel="noopener noreferrer">Abrir sitio original</a></div>
+      </div>
+      <div class="form-actions" style="justify-content:flex-start">
+        <button class="btn-solid" onclick="openForm(cur)">Editar</button>
+        <button class="btn-danger" onclick="askDelete(cur)">Eliminar</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h2>¿Eliminar producto?</h2>
+    <p id="modalTxt"></p>
+    <div class="form-actions">
+      <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn-danger" onclick="confirmDelete()">Sí, eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST FLOTANTE -->
+<div class="toast" id="toast"></div>
+
+<script>
+  let currentUser = null, cur = null, editing = null, pending = null;
+  let activeCompareProduct = null;
+
+  // Usuarios predefinidos (sincronizados con el backend)
+  const users = [
+    { name: 'Administrador', email: 'admin@comparapc.co', pass: 'admin123', role: 'admin' },
+    { name: 'Cliente Demo', email: 'cliente@comparapc.co', pass: 'cliente123', role: 'cliente' },
+    { name: 'Administrador General', email: 'admin@hardwareprice.com', pass: 'admin', role: 'admin' },
+    { name: 'David Cliente', email: 'cliente@hardwareprice.com', pass: '123', role: 'cliente' }
+  ];
+
+  // Catálogo base de componentes con ofertas multi-tienda y enlaces reales
+  let prods = [
+    {
+      id: 'ram-kingston-16gb',
+      n: 'Kingston Fury Beast 16GB DDR4 3200MHz',
+      m: 'Kingston',
+      c: 'Memoria RAM',
+      s: 'RAM · CL16 · 1.35V · Disipador negro',
+      p: '289.900',
+      store: 'PC Componentes Bogotá',
+      avail: 'Disponible',
+      url: 'https://www.kingston.com/',
+      offers: [
+        { store: 'PC Componentes Bogotá', price: '289.900', numPrice: 289900, avail: 'Disponible', date: '2026-10-12', url: 'https://www.kingston.com/' },
+        { store: 'TecnoMundo Online', price: '305.000', numPrice: 305000, avail: 'Disponible', date: '2026-10-10', url: 'https://www.kingston.com/' },
+        { store: 'MegaBytes Store', price: '318.400', numPrice: 318400, avail: 'Disponible', date: '2026-10-14', url: 'https://www.kingston.com/' },
+        { store: 'CompuMarket', price: '329.900', numPrice: 329900, avail: 'Agotado', date: '2026-10-08', url: 'https://www.kingston.com/' },
+        { store: 'Digital PC', price: '341.000', numPrice: 341000, avail: 'Disponible', date: '2026-10-11', url: 'https://www.kingston.com/' }
+      ]
+    },
+    {
+      id: 'ram-corsair-16gb',
+      n: 'Corsair Vengeance LPX 16GB DDR4 3200MHz',
+      m: 'Corsair',
+      c: 'Memoria RAM',
+      s: 'RAM · CL16 · 1.35V · Perfil bajo',
+      p: '312.500',
+      store: 'TecnoMundo Online',
+      avail: 'Disponible',
+      url: 'https://www.corsair.com/',
+      offers: [
+        { store: 'TecnoMundo Online', price: '312.500', numPrice: 312500, avail: 'Disponible', date: '2026-10-13', url: 'https://www.corsair.com/' },
+        { store: 'PC Componentes Bogotá', price: '319.000', numPrice: 319000, avail: 'Disponible', date: '2026-10-11', url: 'https://www.corsair.com/' },
+        { store: 'Digital PC', price: '328.000', numPrice: 328000, avail: 'Disponible', date: '2026-10-09', url: 'https://www.corsair.com/' },
+        { store: 'MegaBytes Store', price: '335.000', numPrice: 335000, avail: 'Agotado', date: '2026-10-07', url: 'https://www.corsair.com/' }
+      ]
+    },
+    {
+      id: 'ram-adata-8gb',
+      n: 'ADATA XPG Gammix D10 8GB DDR4 3200MHz',
+      m: 'ADATA',
+      c: 'Memoria RAM',
+      s: 'RAM · CL16 · 1.35V · Disipador térmico',
+      p: '159.900',
+      store: 'MegaBytes Store',
+      avail: 'Disponible',
+      url: 'https://www.xpg.com/',
+      offers: [
+        { store: 'MegaBytes Store', price: '159.900', numPrice: 159900, avail: 'Disponible', date: '2026-10-14', url: 'https://www.xpg.com/' },
+        { store: 'TecnoMundo Online', price: '168.000', numPrice: 168000, avail: 'Disponible', date: '2026-10-10', url: 'https://www.xpg.com/' },
+        { store: 'PC Componentes', price: '172.500', numPrice: 172500, avail: 'Disponible', date: '2026-10-12', url: 'https://www.xpg.com/' }
+      ]
+    },
+    {
+      id: 'ram-kingston-32gb',
+      n: 'Kingston Fury Renegade 32GB DDR4 3600MHz',
+      m: 'Kingston',
+      c: 'Memoria RAM',
+      s: 'RAM · CL16 · 1.35V · Disipador RGB',
+      p: '589.000',
+      store: 'Digital PC',
+      avail: 'Disponible',
+      url: 'https://www.kingston.com/',
+      offers: [
+        { store: 'Digital PC', price: '589.000', numPrice: 589000, avail: 'Disponible', date: '2026-10-13', url: 'https://www.kingston.com/' },
+        { store: 'PC Componentes Bogotá', price: '610.000', numPrice: 610000, avail: 'Disponible', date: '2026-10-08', url: 'https://www.kingston.com/' },
+        { store: 'TecnoMundo Online', price: '625.000', numPrice: 625000, avail: 'Agotado', date: '2026-10-05', url: 'https://www.kingston.com/' }
+      ]
+    },
+    {
+      id: 'gpu-rtx-4070-super',
+      n: 'NVIDIA GeForce RTX 4070 Super 12GB',
+      m: 'NVIDIA',
+      c: 'Tarjeta gráfica',
+      s: 'GPU · 12GB GDDR6X · DLSS 3.5 · Ray Tracing',
+      p: '2.490.000',
+      store: 'TecnoMundo Online',
+      avail: 'Disponible',
+      url: 'https://www.nvidia.com/',
+      offers: [
+        { store: 'TecnoMundo Online', price: '2.490.000', numPrice: 2490000, avail: 'Disponible', date: '2026-10-14', url: 'https://www.nvidia.com/' },
+        { store: 'PC Componentes Bogotá', price: '2.580.000', numPrice: 2580000, avail: 'Disponible', date: '2026-10-12', url: 'https://www.nvidia.com/' },
+        { store: 'Digital PC', price: '2.620.000', numPrice: 2620000, avail: 'Disponible', date: '2026-10-11', url: 'https://www.nvidia.com/' }
+      ]
+    },
+    {
+      id: 'cpu-ryzen-7-7800x3d',
+      n: 'AMD Ryzen 7 7800X3D 8 Cores 16 Threads',
+      m: 'AMD',
+      c: 'Procesador',
+      s: 'CPU · Socket AM5 · 96MB 3D V-Cache · 5.0 GHz Turbo',
+      p: '1.680.000',
+      store: 'PC Componentes Bogotá',
+      avail: 'Disponible',
+      url: 'https://www.amd.com/',
+      offers: [
+        { store: 'PC Componentes Bogotá', price: '1.680.000', numPrice: 1680000, avail: 'Disponible', date: '2026-10-14', url: 'https://www.amd.com/' },
+        { store: 'TecnoMundo Online', price: '1.740.000', numPrice: 1740000, avail: 'Disponible', date: '2026-10-10', url: 'https://www.amd.com/' },
+        { store: 'MegaBytes Store', price: '1.790.000', numPrice: 1790000, avail: 'Disponible', date: '2026-10-09', url: 'https://www.amd.com/' }
+      ]
+    }
+  ];
+
+  const $ = id => document.getElementById(id);
+  function toast(t) {
+    const el = $('toast');
+    if (!el) return;
+    el.textContent = t;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2400);
+  }
+
+  function isAdmin() { return !!currentUser && currentUser.role === 'admin'; }
+  function isClient() { return !!currentUser && currentUser.role === 'cliente'; }
+  function requireAdmin() {
+    if (!isAdmin()) {
+      toast('No tienes permisos de administrador');
+      showScreen('buscar');
+      return false;
+    }
+    return true;
+  }
+
+  function showScreen(id) {
+    if (['admin', 'form', 'detalle'].includes(id) && !requireAdmin()) return;
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.dataset.screen === id));
+    
+    const target = $(id);
+    if (target) target.classList.add('active');
+
+    if (id === 'buscar') applyFilters();
+    if (id === 'admin') renderRows();
+    if (id === 'comparar') renderCompare();
+  }
+
+  document.querySelectorAll('nav button').forEach(b => {
+    b.addEventListener('click', () => showScreen(b.dataset.screen));
+  });
+
+  function renderAuth() {
+    const nav = $('adminNav');
+    if (nav) nav.style.display = isAdmin() ? 'block' : 'none';
+
+    const authBox = $('auth');
+    if (!authBox) return;
+
+    authBox.innerHTML = currentUser
+      ? `
+        <div class="user">
+          <span class="avatar">${currentUser.role === 'admin' ? 'AD' : 'CL'}</span>
+          <span>
+            <span class="mono">${currentUser.email}</span> 
+            <span class="role-badge ${currentUser.role === 'admin' ? 'admin' : ''}">
+              ${currentUser.role === 'admin' ? 'ADMINISTRADOR' : 'CLIENTE'}
+            </span>
+          </span>
+        </div>
+        <button class="btn-ghost" onclick="logout()">Cerrar sesión</button>
+      `
+      : `
+        <button class="btn-ghost" onclick="showScreen('login')">Iniciar sesión</button>
+        <button class="btn-solid" onclick="showScreen('registro')">Crear cuenta</button>
+      `;
+  }
+
+  function fillDemo(email, pass) {
+    $('lEmail').value = email;
+    $('lPass').value = pass;
+    login();
+  }
+
+  async function login() {
+    const email = $('lEmail').value.trim().toLowerCase();
+    const pass = $('lPass').value.trim();
+
+    if (!email || !pass) {
+      toast('Por favor ingresa correo y contraseña');
+      return;
+    }
+
+    // 1. Intentar validar con la API del backend en Python
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: pass })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        currentUser = data.user;
+        renderAuth();
+        toast('Sesión iniciada como ' + (currentUser.role === 'admin' ? 'administrador' : 'cliente'));
+        showScreen(currentUser.role === 'admin' ? 'admin' : 'buscar');
+        return;
+      }
+    } catch (e) {
+      // Backend offline, usar validación local
+    }
+
+    // 2. Validación local de respaldo (fallback)
+    const u = users.find(x => x.email.toLowerCase() === email && x.pass === pass);
+    if (!u) {
+      toast('Correo o contraseña incorrectos');
+      return;
+    }
+
+    currentUser = { name: u.name, email: u.email, role: u.role };
+    renderAuth();
+    toast('Sesión iniciada como ' + (u.role === 'admin' ? 'administrador' : 'cliente'));
+    showScreen(u.role === 'admin' ? 'admin' : 'buscar');
+  }
+
+  async function register() {
+    const name = $('rName').value.trim();
+    const email = $('rEmail').value.trim().toLowerCase();
+    const pass = $('rPass').value;
+    const pass2 = $('rPass2').value;
+
+    if (!name || !email || pass.length < 8 || pass !== pass2 || !$('rTerms').checked) {
+      toast('Completa correctamente todos los campos (contraseña mínimo 8 caracteres)');
+      return;
+    }
+
+    // Enviar a la API del backend si está disponible
+    try {
+      await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password: pass, role: 'cliente' })
+      });
+    } catch(e) {}
+
+    if (users.some(u => u.email === email)) {
+      toast('Ese correo ya está registrado');
+      return;
+    }
+
+    users.push({ name, email, pass, role: 'cliente' });
+    toast('Cuenta de cliente creada correctamente');
+    $('lEmail').value = email;
+    $('lPass').value = '';
+    showScreen('login');
+  }
+
+  function logout() {
+    currentUser = null;
+    renderAuth();
+    showScreen('buscar');
+    toast('Sesión cerrada correctamente');
+  }
+
+  // ---- RENDERIZADO DINÁMICO DE PRODUCTOS Y FILTROS ----
+  function applyFilters() {
+    // Categorías seleccionadas
+    const catCheckboxes = document.querySelectorAll('.filters input[type=checkbox]');
+    const activeCats = Array.from(catCheckboxes)
+      .filter(cb => cb.checked && ['Memoria RAM', 'Tarjeta gráfica', 'Procesador', 'Almacenamiento'].includes(cb.value))
+      .map(cb => cb.value);
+
+    // Marcas seleccionadas
+    const brandCheckboxes = document.querySelectorAll('#brandFilters input[type=checkbox]');
+    const activeBrands = Array.from(brandCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+
+    // Rango de precio
+    const minVal = parseCOP($('minPrice')?.value || '0');
+    const maxVal = parseCOP($('maxPrice')?.value || '999999999');
+
+    const filtered = prods.filter(p => {
+      if (activeCats.length > 0 && !activeCats.includes(p.c)) return false;
+      if (activeBrands.length > 0 && !activeBrands.includes(p.m)) return false;
+      const numP = parseCOP(p.p);
+      if (numP < minVal || numP > maxVal) return false;
+      return true;
+    });
+
+    $('resultsCount').textContent = `${filtered.length} productos encontrados`;
+
+    const container = $('cardsContainer');
+    if (!container) return;
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<div class="empty" style="grid-column: 1/-1;">No hay componentes que coincidan con los filtros aplicados.</div>`;
+      return;
+    }
+
+    container.innerHTML = filtered.map(p => {
+      const idx = prods.indexOf(p);
+      const storeCount = p.offers ? p.offers.length : 1;
+      return `
+        <div class="card">
+          <div class="name">${p.n}</div>
+          <div class="specs">${p.s}</div>
+          <div class="price-row">
+            <div>
+              <div class="price-tag">Desde</div>
+              <div class="price-value mono">$${p.p}</div>
+            </div>
+            <div class="store-count">en ${storeCount} tiendas</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-compare" onclick="startCompare(${idx})">Comparar precios</button>
+            <a class="buy-btn" href="${p.url || '#'}" target="_blank" rel="noopener noreferrer">Comprar en tienda</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function parseCOP(val) {
+    if (typeof val === 'number') return val;
+    return parseInt(String(val).replace(/\./g, '').replace(/\$/g, '').trim(), 10) || 0;
+  }
+
+  // ---- COMPARAR PRECIOS ESPECÍFICOS ----
+  function startCompare(prodIndex) {
+    activeCompareProduct = prods[prodIndex];
+    showScreen('comparar');
+  }
+
+  function renderCompare() {
+    const titleEl = $('compareTitle');
+    const specsEl = $('compareSpecs');
+    const rowsEl = $('compareRows');
+
+    if (!activeCompareProduct) {
+      activeCompareProduct = prods[0]; // Producto por defecto
+    }
+
+    titleEl.textContent = activeCompareProduct.n;
+    specsEl.textContent = activeCompareProduct.s;
+
+    const offersList = activeCompareProduct.offers || [
+      { store: activeCompareProduct.store || 'Tienda Oficial', price: activeCompareProduct.p, avail: activeCompareProduct.avail || 'Disponible', date: '2026-10-14', url: activeCompareProduct.url }
+    ];
+
+    // Ordenar de menor a mayor precio
+    offersList.sort((a, b) => parseCOP(a.price) - parseCOP(b.price));
+    const lowestPrice = offersList[0]?.price;
+
+    rowsEl.innerHTML = offersList.map((o, idx) => {
+      const isBest = idx === 0;
+      return `
+        <tr class="${isBest ? 'best' : ''}">
+          <td>
+            <span class="store-name">${o.store}</span>
+            ${isBest ? ' <span class="best-tag">MEJOR PRECIO</span>' : ''}
+          </td>
+          <td class="price-cell">$${o.price}</td>
+          <td>
+            <span class="badge ${o.avail === 'Disponible' ? 'ok' : 'no'}">${o.avail}</span>
+          </td>
+          <td class="mono">${o.date}</td>
+          <td>
+            <a class="buy-btn" href="${o.url}" target="_blank" rel="noopener noreferrer">Comprar en tienda</a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // ---- PANEL ADMINISTRATIVO CRUD ----
+  function renderRows() {
+    if (!isAdmin()) return;
+    const q = ($('q').value || '').toLowerCase();
+    const c = $('cat').value;
+
+    const list = prods
+      .map((x, i) => ({ x, i }))
+      .filter(o => (!c || o.x.c === c) && (o.x.n + o.x.m).toLowerCase().includes(q));
+
+    $('count').textContent = list.length + ' registros';
+    $('rows').innerHTML = list.length
+      ? list.map(o => `
+        <tr>
+          <td>${o.x.n}</td>
+          <td>${o.x.m}</td>
+          <td>${o.x.c}</td>
+          <td class="mono">$${o.x.p}</td>
+          <td class="row-actions">
+            <a onclick="openDetail(${o.i})">Ver</a>
+            <a onclick="openForm(${o.i})">Editar</a>
+            <a class="del" onclick="askDelete(${o.i})">Eliminar</a>
+          </td>
+        </tr>
+      `).join('')
+      : '<tr><td colspan="5" class="empty">No se encontraron productos.</td></tr>';
+  }
+
+  function openDetail(i) {
+    if (!requireAdmin()) return;
+    cur = i;
+    const x = prods[i];
+    $('dN').textContent = x.n;
+    $('dS').textContent = x.s;
+    $('dM').textContent = x.m;
+    $('dC').textContent = x.c;
+    $('dP').textContent = '$' + x.p;
+    $('dStore').textContent = x.store || '—';
+    $('dAvail').textContent = x.avail || 'Disponible';
+    $('dUrl').href = x.url || '#';
+    showScreen('detalle');
+  }
+
+  function openForm(i) {
+    if (!requireAdmin()) return;
+    editing = (i === undefined) ? null : i;
+    const x = editing === null 
+      ? { n: '', m: '', c: 'Memoria RAM', s: '', p: '', store: '', avail: 'Disponible', url: '' } 
+      : prods[i];
+
+    $('formTitle').textContent = editing === null ? 'Nuevo producto' : 'Editar producto';
+    $('formSub').textContent = editing === null ? 'Completa los datos para registrar el producto.' : 'Modifica los datos y guarda los cambios.';
+    $('fN').value = x.n;
+    $('fM').value = x.m;
+    $('fC').value = x.c;
+    $('fS').value = x.s;
+    $('fP').value = x.p;
+    $('fStore').value = x.store || '';
+    $('fAvail').value = x.avail || 'Disponible';
+    $('fUrl').value = x.url || '';
+    showScreen('form');
+  }
+
+  async function saveForm() {
+    if (!requireAdmin()) return;
+    const url = $('fUrl').value.trim();
+    if (url) {
+      try { new URL(url); } catch (e) {
+        toast('Debes ingresar una URL válida para el sitio de compra (ej. https://...).');
+        return;
+      }
+    }
+
+    const priceText = $('fP').value.trim() || '0';
+    const storeText = $('fStore').value.trim() || 'Tienda Oficial';
+    const availText = $('fAvail').value;
+
+    const x = {
+      n: $('fN').value.trim() || 'Producto sin nombre',
+      m: $('fM').value.trim() || '—',
+      c: $('fC').value,
+      s: $('fS').value.trim(),
+      p: priceText,
+      store: storeText,
+      avail: availText,
+      url: url || '#',
+      offers: [
+        { store: storeText, price: priceText, numPrice: parseCOP(priceText), avail: availText, date: '2026-10-14', url: url || '#' }
+      ]
+    };
+
+    if (editing === null) {
+      prods.unshift(x);
+      toast('Producto creado correctamente');
+    } else {
+      prods[editing] = { ...prods[editing], ...x };
+      toast('Producto actualizado correctamente');
+    }
+
+    showScreen('admin');
+    applyFilters();
+  }
+
+  function askDelete(i) {
+    if (!requireAdmin()) return;
+    pending = i;
+    $('modalTxt').textContent = 'Se eliminará «' + prods[i].n + '» del catálogo. Esta acción no se puede deshacer.';
+    $('modal').classList.add('open');
+  }
+
+  function closeModal() {
+    $('modal').classList.remove('open');
+  }
+
+  function confirmDelete() {
+    if (!requireAdmin()) return;
+    prods.splice(pending, 1);
+    closeModal();
+    toast('Producto eliminado correctamente');
+    renderRows();
+    applyFilters();
+  }
+
+  // Inicialización
+  renderAuth();
+  applyFilters();
+</script>
+
+</body>
+</html>

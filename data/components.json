@@ -1,0 +1,576 @@
+[
+  {
+    "id": "cpu-ryzen-7-7800x3d",
+    "name": "AMD Ryzen 7 7800X3D",
+    "category": "cpu",
+    "category_name": "Procesador",
+    "brand": "AMD",
+    "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&auto=format&fit=crop&q=80",
+    "badge": "Top Ventas",
+    "rating": 4.9,
+    "reviews_count": 1420,
+    "specs": {
+      "Núcleos / Hilos": "8C / 16T",
+      "Frecuencia Base": "4.2 GHz",
+      "Frecuencia Turbo": "5.0 GHz",
+      "Socket": "AM5",
+      "Caché L3": "96MB 3D V-Cache",
+      "TDP": "120W",
+      "Gráficos Integrados": "Radeon Graphics"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 384.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 419.00, "stock": true, "shipping": "$5.99", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 399.50, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 389.99, "stock": false, "shipping": "$4.50", "url": "https://newegg.com", "condition": "Agotado" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 449.00 },
+      { "date": "Jun 2026", "price": 435.00 },
+      { "date": "Jul 2026", "price": 419.00 },
+      { "date": "Ago 2026", "price": 399.00 },
+      { "date": "Sep 2026", "price": 392.00 },
+      { "date": "Oct 2026", "price": 384.99 }
+    ]
+  },
+  {
+    "id": "cpu-intel-core-i7-14700k",
+    "name": "Intel Core i7-14700K",
+    "category": "cpu",
+    "category_name": "Procesador",
+    "brand": "Intel",
+    "image": "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=400&auto=format&fit=crop&q=80",
+    "badge": "Alto Rendimiento",
+    "rating": 4.7,
+    "reviews_count": 890,
+    "specs": {
+      "Núcleos / Hilos": "20C (8P+12E) / 28T",
+      "Frecuencia Base": "3.4 GHz",
+      "Frecuencia Turbo": "5.6 GHz",
+      "Socket": "LGA 1700",
+      "Caché L3": "33MB Intel Smart Cache",
+      "TDP": "125W (Max 253W)",
+      "Gráficos Integrados": "Intel UHD 770"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 399.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 389.50, "stock": true, "shipping": "Envío Gratis", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 409.00, "stock": true, "shipping": "$6.00", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 394.00, "stock": true, "shipping": "$3.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 430.00 },
+      { "date": "Jun 2026", "price": 419.00 },
+      { "date": "Jul 2026", "price": 405.00 },
+      { "date": "Ago 2026", "price": 399.00 },
+      { "date": "Sep 2026", "price": 395.00 },
+      { "date": "Oct 2026", "price": 389.50 }
+    ]
+  },
+  {
+    "id": "cpu-ryzen-5-7600x",
+    "name": "AMD Ryzen 5 7600X",
+    "category": "cpu",
+    "category_name": "Procesador",
+    "brand": "AMD",
+    "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=400&auto=format&fit=crop&q=80",
+    "badge": "Calidad / Precio",
+    "rating": 4.8,
+    "reviews_count": 960,
+    "specs": {
+      "Núcleos / Hilos": "6C / 12T",
+      "Frecuencia Base": "4.7 GHz",
+      "Frecuencia Turbo": "5.3 GHz",
+      "Socket": "AM5",
+      "Caché L3": "32MB",
+      "TDP": "105W",
+      "Gráficos Integrados": "Radeon Graphics"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 199.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 209.00, "stock": true, "shipping": "$4.99", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 194.00, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 204.50, "stock": true, "shipping": "$5.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 240.00 },
+      { "date": "Jun 2026", "price": 225.00 },
+      { "date": "Jul 2026", "price": 215.00 },
+      { "date": "Ago 2026", "price": 205.00 },
+      { "date": "Sep 2026", "price": 199.00 },
+      { "date": "Oct 2026", "price": 194.00 }
+    ]
+  },
+  {
+    "id": "gpu-rtx-4070-super",
+    "name": "NVIDIA GeForce RTX 4070 Super 12GB",
+    "category": "gpu",
+    "category_name": "Tarjeta Gráfica",
+    "brand": "NVIDIA",
+    "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80",
+    "badge": "Más Recomendado",
+    "rating": 4.9,
+    "reviews_count": 1820,
+    "specs": {
+      "Memoria VRAM": "12GB GDDR6X",
+      "Bus de Memoria": "192-bit",
+      "CUDA Cores": "7168",
+      "Frecuencia Boost": "2475 MHz",
+      "Consumo (TGP)": "220W",
+      "Puertos": "3x DP 1.4a, 1x HDMI 2.1a",
+      "Tecnologías": "DLSS 3.5, Ray Tracing 3rd Gen"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 589.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 615.00, "stock": true, "shipping": "Envío Gratis", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 579.00, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 599.99, "stock": true, "shipping": "$5.99", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 649.00 },
+      { "date": "Jun 2026", "price": 630.00 },
+      { "date": "Jul 2026", "price": 610.00 },
+      { "date": "Ago 2026", "price": 599.00 },
+      { "date": "Sep 2026", "price": 585.00 },
+      { "date": "Oct 2026", "price": 579.00 }
+    ]
+  },
+  {
+    "id": "gpu-rtx-4080-super",
+    "name": "NVIDIA GeForce RTX 4080 Super 16GB",
+    "category": "gpu",
+    "category_name": "Tarjeta Gráfica",
+    "brand": "NVIDIA",
+    "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&auto=format&fit=crop&q=80",
+    "badge": "Ultra 4K Gaming",
+    "rating": 4.9,
+    "reviews_count": 640,
+    "specs": {
+      "Memoria VRAM": "16GB GDDR6X",
+      "Bus de Memoria": "256-bit",
+      "CUDA Cores": "10240",
+      "Frecuencia Boost": "2550 MHz",
+      "Consumo (TGP)": "320W",
+      "Puertos": "3x DP 1.4a, 1x HDMI 2.1a",
+      "Tecnologías": "DLSS 3.5, Ray Tracing 3rd Gen"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 979.00, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 999.00, "stock": true, "shipping": "Envío Gratis", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 969.90, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 989.99, "stock": false, "shipping": "$9.99", "url": "https://newegg.com", "condition": "Agotado" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 1050.00 },
+      { "date": "Jun 2026", "price": 1029.00 },
+      { "date": "Jul 2026", "price": 1009.00 },
+      { "date": "Ago 2026", "price": 989.00 },
+      { "date": "Sep 2026", "price": 975.00 },
+      { "date": "Oct 2026", "price": 969.90 }
+    ]
+  },
+  {
+    "id": "gpu-rx-7800-xt",
+    "name": "AMD Radeon RX 7800 XT 16GB",
+    "category": "gpu",
+    "category_name": "Tarjeta Gráfica",
+    "brand": "AMD",
+    "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=400&auto=format&fit=crop&q=80",
+    "badge": "Gran VRAM",
+    "rating": 4.8,
+    "reviews_count": 1120,
+    "specs": {
+      "Memoria VRAM": "16GB GDDR6",
+      "Bus de Memoria": "256-bit",
+      "Stream Processors": "3840",
+      "Frecuencia Boost": "2430 MHz",
+      "Consumo (TBP)": "263W",
+      "Puertos": "3x DP 2.1, 1x HDMI 2.1",
+      "Tecnologías": "FSR 3, HYPR-RX"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 489.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 479.00, "stock": true, "shipping": "$5.99", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 499.00, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 475.00, "stock": true, "shipping": "$4.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 529.00 },
+      { "date": "Jun 2026", "price": 515.00 },
+      { "date": "Jul 2026", "price": 499.00 },
+      { "date": "Ago 2026", "price": 489.00 },
+      { "date": "Sep 2026", "price": 480.00 },
+      { "date": "Oct 2026", "price": 475.00 }
+    ]
+  },
+  {
+    "id": "gpu-rtx-4060",
+    "name": "NVIDIA GeForce RTX 4060 8GB",
+    "category": "gpu",
+    "category_name": "Tarjeta Gráfica",
+    "brand": "NVIDIA",
+    "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80",
+    "badge": "Económica 1080p",
+    "rating": 4.6,
+    "reviews_count": 2150,
+    "specs": {
+      "Memoria VRAM": "8GB GDDR6",
+      "Bus de Memoria": "128-bit",
+      "CUDA Cores": "3072",
+      "Frecuencia Boost": "2460 MHz",
+      "Consumo (TGP)": "115W",
+      "Puertos": "3x DP 1.4a, 1x HDMI 2.1a",
+      "Tecnologías": "DLSS 3, Ray Tracing"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 299.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 289.00, "stock": true, "shipping": "$4.50", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 295.00, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 285.00, "stock": true, "shipping": "$5.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 329.00 },
+      { "date": "Jun 2026", "price": 319.00 },
+      { "date": "Jul 2026", "price": 309.00 },
+      { "date": "Ago 2026", "price": 299.00 },
+      { "date": "Sep 2026", "price": 289.00 },
+      { "date": "Oct 2026", "price": 285.00 }
+    ]
+  },
+  {
+    "id": "ram-corsair-vengeance-ddr5-32gb",
+    "name": "Corsair Vengeance DDR5 32GB (2x16GB) 6000MHz CL30",
+    "category": "ram",
+    "category_name": "Memoria RAM",
+    "brand": "Corsair",
+    "image": "https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?w=400&auto=format&fit=crop&q=80",
+    "badge": "Baja Latencia",
+    "rating": 4.9,
+    "reviews_count": 870,
+    "specs": {
+      "Capacidad": "32GB (2 x 16GB)",
+      "Tipo de Memoria": "DDR5",
+      "Velocidad": "6000 MHz",
+      "Latencia CAS": "CL30 (30-36-36-76)",
+      "Voltaje": "1.35V",
+      "Perfiles": "Intel XMP 3.0 / AMD EXPO",
+      "Color": "Negro mate"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 109.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 118.00, "stock": true, "shipping": "$3.99", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 112.50, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 104.99, "stock": true, "shipping": "$2.99", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 135.00 },
+      { "date": "Jun 2026", "price": 125.00 },
+      { "date": "Jul 2026", "price": 119.00 },
+      { "date": "Ago 2026", "price": 114.00 },
+      { "date": "Sep 2026", "price": 109.00 },
+      { "date": "Oct 2026", "price": 104.99 }
+    ]
+  },
+  {
+    "id": "ram-gskill-trident-z5-rgb-32gb",
+    "name": "G.Skill Trident Z5 RGB DDR5 32GB (2x16GB) 6400MHz",
+    "category": "ram",
+    "category_name": "Memoria RAM",
+    "brand": "G.Skill",
+    "image": "https://images.unsplash.com/photo-1562976540-1502c2145186?w=400&auto=format&fit=crop&q=80",
+    "badge": "RGB Premium",
+    "rating": 4.8,
+    "reviews_count": 620,
+    "specs": {
+      "Capacidad": "32GB (2 x 16GB)",
+      "Tipo de Memoria": "DDR5",
+      "Velocidad": "6400 MHz",
+      "Latencia CAS": "CL32 (32-39-39-102)",
+      "Voltaje": "1.40V",
+      "Iluminación": "RGB Direccionable",
+      "Perfiles": "Intel XMP 3.0"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 129.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 139.00, "stock": false, "shipping": "$4.50", "url": "https://cyberpuerta.mx", "condition": "Agotado" },
+      { "name": "PCComponentes", "price": 124.90, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 127.00, "stock": true, "shipping": "$3.50", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 155.00 },
+      { "date": "Jun 2026", "price": 145.00 },
+      { "date": "Jul 2026", "price": 139.00 },
+      { "date": "Ago 2026", "price": 132.00 },
+      { "date": "Sep 2026", "price": 128.00 },
+      { "date": "Oct 2026", "price": 124.90 }
+    ]
+  },
+  {
+    "id": "motherboard-asus-rog-strix-b650-a",
+    "name": "ASUS ROG Strix B650-A Gaming WiFi",
+    "category": "motherboard",
+    "category_name": "Placa Madre",
+    "brand": "ASUS",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=80",
+    "badge": "Estilo Blanco / Plata",
+    "rating": 4.8,
+    "reviews_count": 510,
+    "specs": {
+      "Socket": "AMD AM5",
+      "Chipset": "AMD B650",
+      "Factor de Forma": "ATX",
+      "Ranuras RAM": "4x DDR5 (hasta 128GB, 7600+ MHz)",
+      "Ranuras PCIe": "1x PCIe 5.0 x16, 2x PCIe 4.0 x16",
+      "Almacenamiento": "3x M.2 NVMe (1x PCIe 5.0, 2x PCIe 4.0), 4x SATA",
+      "Conectividad": "WiFi 6E, Bluetooth 5.2, 2.5G LAN"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 219.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 229.00, "stock": true, "shipping": "$5.00", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 214.50, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 209.99, "stock": true, "shipping": "$4.50", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 260.00 },
+      { "date": "Jun 2026", "price": 245.00 },
+      { "date": "Jul 2026", "price": 235.00 },
+      { "date": "Ago 2026", "price": 224.00 },
+      { "date": "Sep 2026", "price": 215.00 },
+      { "date": "Oct 2026", "price": 209.99 }
+    ]
+  },
+  {
+    "id": "motherboard-msi-mag-b760-tomahawk",
+    "name": "MSI MAG B760 Tomahawk WiFi",
+    "category": "motherboard",
+    "category_name": "Placa Madre",
+    "brand": "MSI",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=80",
+    "badge": "Robusta Intel",
+    "rating": 4.7,
+    "reviews_count": 430,
+    "specs": {
+      "Socket": "Intel LGA 1700",
+      "Chipset": "Intel B760",
+      "Factor de Forma": "ATX",
+      "Ranuras RAM": "4x DDR5 (hasta 192GB, 7000+ MHz)",
+      "Ranuras PCIe": "1x PCIe 5.0 x16, 1x PCIe 3.0 x16",
+      "Almacenamiento": "3x M.2 PCIe 4.0, 4x SATA",
+      "Conectividad": "WiFi 6E, Bluetooth 5.3, Realtek 2.5G LAN"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 179.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 172.50, "stock": true, "shipping": "Envío Gratis", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 185.00, "stock": true, "shipping": "$5.00", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 175.00, "stock": true, "shipping": "$3.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 210.00 },
+      { "date": "Jun 2026", "price": 199.00 },
+      { "date": "Jul 2026", "price": 189.00 },
+      { "date": "Ago 2026", "price": 182.00 },
+      { "date": "Sep 2026", "price": 178.00 },
+      { "date": "Oct 2026", "price": 172.50 }
+    ]
+  },
+  {
+    "id": "storage-samsung-990-pro-2tb",
+    "name": "Samsung 990 PRO NVMe M.2 SSD 2TB",
+    "category": "storage",
+    "category_name": "Almacenamiento",
+    "brand": "Samsung",
+    "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&auto=format&fit=crop&q=80",
+    "badge": "Máxima Velocidad",
+    "rating": 4.9,
+    "reviews_count": 2890,
+    "specs": {
+      "Capacidad": "2TB (2000 GB)",
+      "Interfaz": "PCIe Gen 4.0 x4, NVMe 2.0",
+      "Lectura Secuencial": "Hasta 7,450 MB/s",
+      "Escritura Secuencial": "Hasta 6,900 MB/s",
+      "Factor de Forma": "M.2 2280",
+      "DRAM Caché": "2GB LPDDR4",
+      "Garantía": "5 años o 1200 TBW"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 169.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 182.00, "stock": true, "shipping": "$4.50", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 164.90, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 167.99, "stock": true, "shipping": "$2.50", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 209.00 },
+      { "date": "Jun 2026", "price": 195.00 },
+      { "date": "Jul 2026", "price": 185.00 },
+      { "date": "Ago 2026", "price": 178.00 },
+      { "date": "Sep 2026", "price": 171.00 },
+      { "date": "Oct 2026", "price": 164.90 }
+    ]
+  },
+  {
+    "id": "storage-crucial-p3-plus-1tb",
+    "name": "Crucial P3 Plus NVMe M.2 1TB",
+    "category": "storage",
+    "category_name": "Almacenamiento",
+    "brand": "Crucial",
+    "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400&auto=format&fit=crop&q=80",
+    "badge": "Económico Rápido",
+    "rating": 4.7,
+    "reviews_count": 1450,
+    "specs": {
+      "Capacidad": "1TB (1000 GB)",
+      "Interfaz": "PCIe Gen 4.0 x4",
+      "Lectura Secuencial": "Hasta 5,000 MB/s",
+      "Escritura Secuencial": "Hasta 3,600 MB/s",
+      "Factor de Forma": "M.2 2280",
+      "Garantía": "5 años o 220 TBW"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 64.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 61.50, "stock": true, "shipping": "$3.50", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 68.00, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 59.99, "stock": true, "shipping": "$2.99", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 79.00 },
+      { "date": "Jun 2026", "price": 75.00 },
+      { "date": "Jul 2026", "price": 70.00 },
+      { "date": "Ago 2026", "price": 67.00 },
+      { "date": "Sep 2026", "price": 63.00 },
+      { "date": "Oct 2026", "price": 59.99 }
+    ]
+  },
+  {
+    "id": "psu-corsair-rm850e-850w",
+    "name": "Corsair RM850e 850W ATX 3.0 80+ Gold",
+    "category": "psu",
+    "category_name": "Fuente de Poder",
+    "brand": "Corsair",
+    "image": "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=400&auto=format&fit=crop&q=80",
+    "badge": "ATX 3.0 / PCIe 5.0",
+    "rating": 4.8,
+    "reviews_count": 910,
+    "specs": {
+      "Potencia": "850 Watts",
+      "Certificación": "80 PLUS Gold (Cybenetics Platinum)",
+      "Modularidad": "100% Totalmente Modular",
+      "Normativa": "ATX 3.0 y PCIe 5.0 Ready (Cable 12VHPWR incluido)",
+      "Ventilador": "120mm con rodamiento de rifle (Modo Zero RPM)",
+      "Garantía": "7 años"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 119.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 128.00, "stock": true, "shipping": "Envío Gratis", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 114.90, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 119.50, "stock": false, "shipping": "$5.00", "url": "https://newegg.com", "condition": "Agotado" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 139.00 },
+      { "date": "Jun 2026", "price": 130.00 },
+      { "date": "Jul 2026", "price": 125.00 },
+      { "date": "Ago 2026", "price": 120.00 },
+      { "date": "Sep 2026", "price": 118.00 },
+      { "date": "Oct 2026", "price": 114.90 }
+    ]
+  },
+  {
+    "id": "case-nzxt-h5-flow",
+    "name": "NZXT H5 Flow Compact ATX Mid-Tower",
+    "category": "case",
+    "category_name": "Gabinete",
+    "brand": "NZXT",
+    "image": "https://images.unsplash.com/photo-1587202372575-b6d45e45a05b?w=400&auto=format&fit=crop&q=80",
+    "badge": "Excelente Flujo",
+    "rating": 4.8,
+    "reviews_count": 1340,
+    "specs": {
+      "Tipo": "Mid-Tower ATX",
+      "Compatibilidad": "ATX, Micro-ATX, Mini-ITX",
+      "Panel Lateral": "Vidrio Templado",
+      "Ventilación GPU": "Ventilador dedicado angular en la base",
+      "Longitud Máx GPU": "365 mm",
+      "Altura Máx Cooler CPU": "165 mm",
+      "Soporte Radiador": "Hasta 280 mm frontal"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 84.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 89.00, "stock": true, "shipping": "$6.00", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 79.99, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 82.50, "stock": true, "shipping": "$5.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 99.00 },
+      { "date": "Jun 2026", "price": 94.00 },
+      { "date": "Jul 2026", "price": 89.00 },
+      { "date": "Ago 2026", "price": 86.00 },
+      { "date": "Sep 2026", "price": 82.00 },
+      { "date": "Oct 2026", "price": 79.99 }
+    ]
+  },
+  {
+    "id": "cooler-thermalright-peerless-assassin-120-se",
+    "name": "Thermalright Peerless Assassin 120 SE",
+    "category": "cooler",
+    "category_name": "Refrigeración",
+    "brand": "Thermalright",
+    "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80",
+    "badge": "Rey Calidad / Precio",
+    "rating": 4.9,
+    "reviews_count": 3410,
+    "specs": {
+      "Tipo": "Disipador de Aire Doble Torre",
+      "Heatpipes": "6x 6mm tubos de cobre niquelado",
+      "Ventiladores": "2x 120mm TL-C12C PWM",
+      "Nivel de Ruido": "≤ 25.6 dBA",
+      "Compatibilidad": "Intel LGA 1700/1200/115X, AMD AM5/AM4",
+      "Altura Total": "155 mm"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 34.90, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 39.50, "stock": true, "shipping": "$3.99", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 37.00, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 33.90, "stock": true, "shipping": "$2.99", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 42.00 },
+      { "date": "Jun 2026", "price": 39.00 },
+      { "date": "Jul 2026", "price": 37.00 },
+      { "date": "Ago 2026", "price": 36.00 },
+      { "date": "Sep 2026", "price": 34.90 },
+      { "date": "Oct 2026", "price": 33.90 }
+    ]
+  },
+  {
+    "id": "cooler-nzxt-kraken-elite-360-rgb",
+    "name": "NZXT Kraken Elite 360 RGB Líquida",
+    "category": "cooler",
+    "category_name": "Refrigeración",
+    "brand": "NZXT",
+    "image": "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=400&auto=format&fit=crop&q=80",
+    "badge": "Pantalla LCD 2.36\"",
+    "rating": 4.8,
+    "reviews_count": 480,
+    "specs": {
+      "Tipo": "Refrigeración Líquida AIO 360mm",
+      "Pantalla": "LCD TFT de 2.36\" (640x640, 60 Hz, 690 cd/m²)",
+      "Bomba": "Asetek 7ª Gen (800 - 2,800 ± 300 RPM)",
+      "Ventiladores": "3x F120 RGB Core",
+      "Compatibilidad": "Intel LGA 1700/1200/115X, AMD AM5/AM4",
+      "Radiador": "Aluminio 394 x 121 x 27 mm"
+    },
+    "stores": [
+      { "name": "Amazon", "price": 279.99, "stock": true, "shipping": "Envío Gratis", "url": "https://amazon.com", "condition": "Nuevo" },
+      { "name": "CyberPuerta", "price": 299.00, "stock": true, "shipping": "Envío Gratis", "url": "https://cyberpuerta.mx", "condition": "Nuevo" },
+      { "name": "PCComponentes", "price": 284.50, "stock": true, "shipping": "Envío Gratis", "url": "https://pccomponentes.com", "condition": "Nuevo" },
+      { "name": "Newegg", "price": 274.99, "stock": true, "shipping": "$6.00", "url": "https://newegg.com", "condition": "Nuevo" }
+    ],
+    "price_history": [
+      { "date": "May 2026", "price": 310.00 },
+      { "date": "Jun 2026", "price": 299.00 },
+      { "date": "Jul 2026", "price": 290.00 },
+      { "date": "Ago 2026", "price": 285.00 },
+      { "date": "Sep 2026", "price": 279.00 },
+      { "date": "Oct 2026", "price": 274.99 }
+    ]
+  }
+]
