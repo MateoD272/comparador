@@ -190,6 +190,8 @@ def create_flask_app():
 
     return app
 
+if FLASK_AVAILABLE:
+    app = create_flask_app()
 
 class NativeRequestHandler(SimpleHTTPRequestHandler):
     """Manejador HTTP nativo con soporte para API REST, Autenticación, Roles y Archivos Estáticos."""
@@ -427,7 +429,6 @@ if __name__ == "__main__":
 
     if FLASK_AVAILABLE:
         print(f"\n>>> Iniciando con Flask en http://127.0.0.1:{port} ...")
-        app = create_flask_app()
         app.run(host="127.0.0.1", port=port, debug=True)
     else:
         print(f"\n>>> Flask no detectado. Iniciando con Servidor Nativo Python en http://127.0.0.1:{port} ...")
